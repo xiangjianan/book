@@ -1,0 +1,23 @@
+.header{
+    height: 70px;
+    background-color: #fdfdfd;
+    border-bottom: 1px solid #E6E5E6;
+}
+.btn-primary{
+    background-color: #38adff;
+    margin-top: 18px;
+}
+
+.title{
+    padding: 8px;
+    margin: 0;
+    text-align: center;
+    line-height: 70px;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+}
+.title-icon{
+    font-size: 35px;
+    padding-top: 17px;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>图书管理系统</title>
+    <script src="/static/jquery-3.1.1.min.js"></script>
+    <link href="/static/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/auth/login.css" rel="stylesheet">
+{#    <link href="/static/home/home.css" rel="stylesheet">#}
+    <link href="/static/fonts/fonts.css" rel="stylesheet">
+    <link href="/static/auth/header.css" rel="stylesheet">
+    <link href="/static/reset.css" rel="stylesheet">
+    <script src="/static/auth/header.js"></script>
+    <script src="/static/auth/login.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <span class="title-icon iconfont pull-left">&#xe618;</span>
+                <span class="title">图书管理系统</span>
+            </div>
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-3">
+                {% block btn %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="body">
+    {% block con %}
+    {% endblock %}
+</div>
+</body>
+</html>

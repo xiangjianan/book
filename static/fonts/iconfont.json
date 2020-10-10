@@ -1,0 +1,30 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "64921849",
+      "name": "用户",
+      "font_class": "yonghu1",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "64921877",
+      "name": "密码",
+      "font_class": "mima1",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "64922018",
+      "name": "教辅图书",
+      "font_class": "jiaofutushu",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    }
+  ]
+}

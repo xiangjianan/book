@@ -1,0 +1,10 @@
+.body .row>div{
+    height: 600px;
+}
+.body-img{
+    background: url("/static/auth/wall.png") no-repeat center top;
+    background-size: auto 600px;
+}
+.body-login{
+    padding-top: 100px;
+}

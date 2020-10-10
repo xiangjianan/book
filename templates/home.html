@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block btn %}
+    <a href="/logout/" class="btn btn-primary pull-right">安全退出</a>
+{% endblock %}
+
+{% block con %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 body-left bg-success">
+                <ul>
+                    <li class="text-center text-muted">图书</li>
+                    <li class="btn btn-block btn-info btn-lg">全部图书</li>
+                    <li class="btn btn-block btn-info btn-lg">新增图书</li>
+                    <li class="text-center text-muted">检索</li>
+                    <li class="btn btn-block btn-info btn-lg">按作者分类</li>
+                    <li class="btn btn-block btn-info btn-lg">按出版社分类</li>
+                </ul>
+            </div>
+            <div class="col-md-9 body-right bg-info">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

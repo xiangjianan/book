@@ -1,0 +1,11 @@
+.body div{
+    height: 600px;
+}
+.body-left{
+    padding-top: 100px;
+}
+
+.body li,
+.body li:hover{
+    transition: 0.5s all;
+}
