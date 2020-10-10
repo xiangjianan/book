@@ -32,13 +32,3 @@ class UserForm(forms.Form):
 class UserFormLogin(forms.Form):
     usr = forms.CharField(widget=widgets.TextInput(attrs={'class': 'form-control', 'placeholder': '用户名'}))
     pwd = forms.CharField(widget=widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': '密码'}))
-
-    # def clean_usr(self):
-    #     usr = self.cleaned_data.get('usr')
-    #     pwd = self.cleaned_data.get('pwd')
-    #     ret = User.objects.filter(username=usr)
-    #     if not ret:
-    #         raise ValidationError('账号或密码错误')
-    #     else:
-    #         if pwd != ret.get('password'):
-    #             raise ValidationError('账号或1密码错误')

@@ -11,43 +11,50 @@ import json
 
 
 def reg(request):
+    # 注册按钮提交
     if request.method == "POST":
         usr = request.POST.get('usr')
         pwd = request.POST.get('pwd')
         r_pwd = request.POST.get('r_pwd')
         form = UserForm(request.POST)
+        # forms校验通过
         if form.is_valid():
-            print(form.cleaned_data)
             User.objects.create_user(username=usr, password=pwd)
+            # 重定向登录界面
             return redirect('/login/')
         else:
-            print(form.cleaned_data)
-            print(form.errors)
-            print(type(form.errors))
+            # forms校验不通过，继续注册
             return render(request, 'reg.html', locals())
+    # url请求
     form = UserForm()
     return render(request, "reg.html", locals())
 
 
 def login(request):
+    # 登录按钮提交
+    if request.method == "POST":
+        usr = request.POST.get('usr')
+        pwd = request.POST.get('pwd')
+        form = UserFormLogin(request.POST)
+        res = {'usr': None, 'msg': None}
+        # forms校验通过
+        if form.is_valid():
+            obj = auth.authenticate(username=usr, password=pwd)
+            # 用户认证通过
+            if obj:
+                auth.login(request, obj)
+                res['usr'] = obj.username
+            # 用户认证失败
+            else:
+                res['msg'] = '账号或密码错误'
+        else:
+            res['msg'] = '账号或密码不能为空'
+# 通过json返回认证状态
+        res = json.dumps(res)
+        return HttpResponse(res)
+    # url请求
     form = UserFormLogin()
     return render(request, "login.html", locals())
-
-
-def login_auth(request):
-    usr = request.POST.get('usr')
-    pwd = request.POST.get('pwd')
-    form = UserFormLogin(request.POST)
-    res = {'usr': None, 'msg': None}
-    if form.is_valid():
-        obj = auth.authenticate(username=usr, password=pwd)
-        if obj:
-            auth.login(request, obj)
-            res['usr'] = obj.username
-        else:
-            res['msg'] = '账号或密码错误'
-    res = json.dumps(res)
-    return HttpResponse(res)
 
 
 def home(request):

@@ -1,6 +1,6 @@
 .header{
     height: 70px;
-    background-color: #fdfdfd;
+    background-color: #fafafa;
     border-bottom: 1px solid #E6E5E6;
 }
 .btn-primary{
@@ -16,8 +16,18 @@
     color: #333;
     font-size: 16px;
     font-weight: bold;
+    transition: 0.3s all;
 }
 .title-icon{
     font-size: 35px;
     padding-top: 17px;
+}
+.title:hover{
+    color: #ff6700;
+    transition: 0.3s all;
+}
+
+
+body{
+    font: 14px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif;
 }

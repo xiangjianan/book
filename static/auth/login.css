@@ -1,10 +1,20 @@
-.body .row>div{
-    height: 600px;
-}
+/*.body .row>div{*/
+/*    height: 600px;*/
+/*}*/
 .body-img{
+    height: 600px;
     background: url("/static/auth/wall.png") no-repeat center top;
     background-size: auto 600px;
 }
 .body-login{
-    padding-top: 100px;
+    margin-top: 50px;
+    padding-top: 50px;
+    border-radius: 10px;
+}
+#login_auth{
+    padding-top: 5px;
+}
+.btn,
+.btn:hover{
+    transition: 0.5s all;
 }

@@ -1,7 +1,7 @@
 $(function () {
     $('#submit').click(function () {
         $.ajax({
-            url: '/login_auth/',
+            url: '/login/',
             type: 'post',
             data: {
                 'usr': $('#id_usr').val(),
@@ -9,6 +9,7 @@ $(function () {
             },
             success: function (data) {
                 data = JSON.parse(data)
+                console.log(data)
                 if (data.usr) {
                     location.href = '/home/';
                 } else {
