@@ -24,4 +24,6 @@ urlpatterns = [
     path('logout/', views.logout),
     path('reg/', views.reg),
     path('home/', views.home),
+    path('publish/', views.publish),
+    path('author/', views.author),
 ]

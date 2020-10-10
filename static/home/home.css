@@ -1,11 +1,23 @@
-.body div{
-    height: 600px;
-}
+/*.body div{*/
+/*    height: 600px;*/
+/*}*/
 .body-left{
     padding-top: 100px;
+    height: 600px;
+    border-right: 1px solid #E6E5E6;
+    padding-right: 30px;
 }
 
 .body li,
 .body li:hover{
     transition: 0.5s all;
+}
+.body-left li{
+    margin: 10px 0;
+}
+.body-right{
+    height: 600px;
+}
+.body-left a{
+    color: white;
 }

@@ -1,9 +1,12 @@
 /*.body .row>div{*/
 /*    height: 600px;*/
 /*}*/
+body{
+    font: 14px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif;
+}
 .body-img{
     height: 600px;
-    background: url("/static/auth/wall.png") no-repeat center top;
+    background: url("/static/auth/login.png") no-repeat center top;
     background-size: auto 600px;
 }
 .body-login{

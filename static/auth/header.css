@@ -3,9 +3,17 @@
     background-color: #fafafa;
     border-bottom: 1px solid #E6E5E6;
 }
-.btn-primary{
-    background-color: #38adff;
+.usr{
     margin-top: 18px;
+}
+.btn-logout{
+}
+.dropdown-menu{
+    padding: 0;
+    margin: 0;
+    min-width: 80px;
+    line-height: 40px;
+    text-align: center;
 }
 
 .title{
@@ -27,7 +35,6 @@
     transition: 0.3s all;
 }
 
-
-body{
-    font: 14px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif;
+a,a:hover{
+    text-decoration:None;
 }

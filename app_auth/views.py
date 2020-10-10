@@ -49,7 +49,7 @@ def login(request):
                 res['msg'] = '账号或密码错误'
         else:
             res['msg'] = '账号或密码不能为空'
-# 通过json返回认证状态
+        # 通过json返回认证状态
         res = json.dumps(res)
         return HttpResponse(res)
     # url请求
@@ -60,9 +60,21 @@ def login(request):
 def home(request):
     if request.user.is_anonymous:
         return redirect('/login/')
-    return render(request, "home.html")
+    else:
+        usr = request.user.username
+        return render(request, "home.html", locals())
 
 
 def logout(request):
     auth.logout(request)
     return redirect('/login')
+
+
+def publish(request):
+    usr = request.user.username
+    return render(request, "publish.html", locals())
+
+
+def author(request):
+    usr = request.user.username
+    return render(request, "author.html", locals())
