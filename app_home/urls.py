@@ -5,4 +5,7 @@ urlpatterns = [
     path('home/', views.home),
     path('publish/', views.publish),
     path('author/', views.author),
+    path('add_pub/', views.add_pub),
+    path('add_book/', views.add_book),
+    path('add_auth/', views.add_auth),
 ]
