@@ -24,10 +24,10 @@ def reg(request):
             return redirect('/login/')
         else:
             # forms校验不通过，继续注册
-            return render(request, 'reg.html', locals())
+            return render(request, 'auth/reg.html', locals())
     # url请求
     form = UserForm()
-    return render(request, "reg.html", locals())
+    return render(request, "auth/reg.html", locals())
 
 
 def login(request):
@@ -54,7 +54,7 @@ def login(request):
         return HttpResponse(res)
     # url请求
     form = UserFormLogin()
-    return render(request, "login.html", locals())
+    return render(request, "auth/login.html", locals())
 
 
 def home(request):
@@ -62,7 +62,7 @@ def home(request):
         return redirect('/login/')
     else:
         usr = request.user.username
-        return render(request, "home.html", locals())
+        return render(request, "home/home.html", locals())
 
 
 def logout(request):
@@ -72,9 +72,9 @@ def logout(request):
 
 def publish(request):
     usr = request.user.username
-    return render(request, "publish.html", locals())
+    return render(request, "home/publish.html", locals())
 
 
 def author(request):
     usr = request.user.username
-    return render(request, "author.html", locals())
+    return render(request, "home/author.html", locals())
