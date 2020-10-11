@@ -5,7 +5,7 @@
         <span class="pull-right btn btn-link usr iconfont" id="usr-logout" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">&#xe66b; {{ usr }}</span>
         <ul class="dropdown-menu" aria-labelledby="dLabel">
-            <a href="/logout/" class="text-muted">安全退出</a>
+            <a href="/app_auth/logout/" class="text-muted">安全退出</a>
         </ul>
     </div>
 {% endblock %}
@@ -17,15 +17,15 @@
                 <ul>
                     <li class="text-center text-muted pull-left">图书</li>
                     <li class="btn btn-block btn-info btn-lg pull-left">
-                        <a href="/home/">全部图书</a>
+                        <a href="/app_home/home/">全部图书</a>
                     </li>
                     <li class="btn btn-block btn-info btn-lg pull-left">新增图书</li>
                     <li class="text-center text-muted pull-left" style="margin-top: 40px;">检索</li>
                     <li class="btn btn-block btn-info btn-lg pull-left">
-                        <a href="/author/">按作者分类</a>
+                        <a href="/app_home/author/">按作者分类</a>
                     </li>
                     <li class="btn btn-block btn-info btn-lg pull-left">
-                        <a href="/publish/">按出版社分类</a>
+                        <a href="/app_home/publish/">按出版社分类</a>
                     </li>
                 </ul>
             </div>

@@ -57,24 +57,6 @@ def login(request):
     return render(request, "auth/login.html", locals())
 
 
-def home(request):
-    if request.user.is_anonymous:
-        return redirect('/login/')
-    else:
-        usr = request.user.username
-        return render(request, "home/home.html", locals())
-
-
 def logout(request):
     auth.logout(request)
     return redirect('/login')
-
-
-def publish(request):
-    usr = request.user.username
-    return render(request, "home/publish.html", locals())
-
-
-def author(request):
-    usr = request.user.username
-    return render(request, "home/author.html", locals())

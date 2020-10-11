@@ -1,5 +1,6 @@
 $(function (){
     $('.title').click(function (){
-        window.location.replace('/home/')
+        console.log('/app_home/home/')
+        window.location.replace('/app_home/home/')
     })
 })
