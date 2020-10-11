@@ -2,4 +2,28 @@
 
 {% block db_book %}
     <a href="/app_home/add_book/" class="btn btn-success btn-lg pull-right">新增图书</a>
+
+    <table class="table table-striped">
+        <thead>
+        <tr class="info">
+            <th>编号</th>
+            <th>书名</th>
+            <th>出版社</th>
+            <th>作者</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for book in book_obj %}
+            <tr class="">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ book.book_name }}</td>
+                <td>{{ book.pub.pub_name }}</td>
+                <td>{% for auth in book.auth.all %}
+                <span>{{ auth.auth_name }}</span>
+                {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

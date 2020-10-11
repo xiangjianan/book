@@ -2,4 +2,20 @@
 
 {% block db_book %}
     <a href="/app_home/add_pub/" class="btn btn-success btn-lg pull-right">新增出版社</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>出版社</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for pub in pub_obj %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ pub.pub_name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

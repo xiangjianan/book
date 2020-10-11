@@ -2,4 +2,20 @@
 
 {% block db_book %}
     <a href="/app_home/add_auth/" class="btn btn-success btn-lg pull-right">新增作者</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>作者</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for auth in auth_obj %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ auth.auth_name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

@@ -17,16 +17,19 @@ def home(request):
         return redirect('/app_auth/login/')
     else:
         usr = request.user.username
+        book_obj = Book.objects.all()
         return render(request, "home/home.html", locals())
 
 
 def publish(request):
     usr = request.user.username
+    pub_obj = Publish.objects.all()
     return render(request, "home/publish.html", locals())
 
 
 def author(request):
     usr = request.user.username
+    auth_obj = Author.objects.all()
     return render(request, "home/author.html", locals())
 
 
@@ -44,7 +47,7 @@ def add_book(request):
             return redirect('/app_home/home/')
         else:
             # forms校验不通过，继续注册
-            return render(request, 'auth/reg.html', locals())
+            return render(request, 'home/add_book.html', locals())
     form = AddFormBook()
     pub_obj = Publish.objects.all()
     auth_obj = Author.objects.all()
@@ -62,7 +65,7 @@ def add_auth(request):
             return redirect('/app_home/home/')
         else:
             # forms校验不通过，继续注册
-            return render(request, 'auth/reg.html', locals())
+            return render(request, 'home/add_auth.html', locals())
     form = AddFormAuth()
     return render(request, "home/add_auth.html", locals())
 
@@ -78,6 +81,6 @@ def add_pub(request):
             return redirect('/app_home/home/')
         else:
             # forms校验不通过，继续注册
-            return render(request, 'auth/reg.html', locals())
+            return render(request, 'home/add_pub.html', locals())
     form = AddFormPub()
     return render(request, "home/add_pub.html", locals())
