@@ -21,13 +21,17 @@ def reg(request):
         if form.is_valid():
             User.objects.create_user(username=usr, password=pwd)
             # 重定向登录界面
-            return redirect('/login/')
+            return redirect('/app_auth/reg_success/')
         else:
             # forms校验不通过，继续注册
             return render(request, 'auth/reg.html', locals())
     # url请求
     form = UserForm()
     return render(request, "auth/reg.html", locals())
+
+
+def reg_success(request):
+    return render(request, "auth/reg_success.html")
 
 
 def login(request):
