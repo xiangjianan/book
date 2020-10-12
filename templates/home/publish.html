@@ -1,9 +1,10 @@
 {% extends 'home/home.html' %}
 
 {% block db_book %}
-{#    <a href="/app_home/add_pub/" class="btn btn-success btn-lg pull-right">新增出版社</a>#}
+    {#    <a href="/app_home/add_pub/" class="btn btn-success btn-lg pull-right">新增出版社</a>#}
     <!-- Small modal -->
-    <button type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target=".bs-example-modal-sm">新增出版社
+    <button type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal"
+            data-target=".bs-example-modal-sm">新增出版社
     </button>
 
     <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -17,7 +18,7 @@
                             <span class="text-danger">{{ form.pub_name.errors }}</span>
                         </div>
                     </div>
-                    <div class="form-group" >
+                    <div class="form-group">
                         <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 10px">
                             <button type="submit" class="btn btn-info btn-block">添加</button>
                         </div>
@@ -28,16 +29,24 @@
     </div>
     <table class="table table-striped">
         <thead>
-        <tr>
-            <th>编号</th>
+        <tr class="info">
+            <th width="100">编号</th>
             <th>出版社</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         {% for pub in pub_obj %}
-            <tr>
+            <tr height="50">
                 <td>{{ forloop.counter }}</td>
                 <td>{{ pub.pub_name }}</td>
+                <td>
+                    <a href="/app_home/{{ pub.pk }}/delete_pub" class="btn btn-danger btn-sm
+                    pull-right">删除</a>
+                    <a href="/app_home/{{ pub.pk }}/change_pub" class="btn btn-warning btn-sm pull-right"
+                       style="margin-right: 5px">修改</a>
+
+                </td>
             </tr>
         {% endfor %}
         </tbody>

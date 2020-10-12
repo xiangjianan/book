@@ -1,9 +1,10 @@
 {% extends 'base2.html' %}
 
 {% block db_book %}
-{#    <a href="/app_home/add_book/" class="btn btn-success btn-lg pull-right">新增图书</a>#}
+    {#    <a href="/app_home/add_book/" class="btn btn-success btn-lg pull-right">新增图书</a>#}
     <!-- Large modal -->
-    <button type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">新增图书
+    <button type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal"
+            data-target=".bs-example-modal-lg">新增图书
     </button>
 
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -50,21 +51,27 @@
     <table class="table table-striped">
         <thead>
         <tr class="info">
-            <th>编号</th>
-            <th>书名</th>
-            <th>出版社</th>
-            <th>作者</th>
+            <th width="100">编号</th>
+            <th width="200">书名</th>
+            <th width="200">出版社</th>
+            <th width="200">作者</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         {% for book in book_obj %}
-            <tr class="">
+            <tr height="50">
                 <td>{{ forloop.counter }}</td>
                 <td>{{ book.book_name }}</td>
                 <td>{{ book.pub.pub_name }}</td>
                 <td>{% for auth in book.auth.all %}
                     <span>{{ auth.auth_name }}</span>
                 {% endfor %}
+                </td>
+                <td>
+                    <a href="/app_home/{{ book.pk }}/delete_book" class="btn btn-danger btn-sm pull-right">删除</a>
+                    <a href="/app_home/{{ book.pk }}/change_book" class="btn btn-warning btn-sm pull-right"
+                       style="margin-right: 5px">修改</a>
                 </td>
             </tr>
         {% endfor %}

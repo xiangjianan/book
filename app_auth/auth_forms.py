@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 
 # 注册
 class UserForm(forms.Form):
-    usr = forms.CharField(min_length=4, max_length=20,
+    usr = forms.CharField(min_length=2, max_length=20,
                           widget=widgets.TextInput(attrs={'class': 'form-control', 'placeholder': '用户名'}))
     pwd = forms.CharField(min_length=6,
                           widget=widgets.PasswordInput(attrs={'class': 'form-control', 'placeholder': '密码'}))
