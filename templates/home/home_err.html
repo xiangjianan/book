@@ -1,5 +1,6 @@
 {% extends 'base2.html' %}
 
+<!-- 跳转：主页 -->
 {% block meta %}
     <meta http-equiv="refresh" content="1;url=../home">
 {% endblock %}
@@ -7,6 +8,7 @@
 {% block db_book %}
     <div class="container">
         <div class="row">
+            <!-- 错误信息提示：书名重复 -->
             <div class="col-md-9" style="margin-top: 100px">
                 <img class="center-block" src="/static/home/error.jpeg" style="width: 20%">
                 <p class="h3 text-center text-muted">书名重复</p>

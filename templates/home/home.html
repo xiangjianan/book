@@ -1,33 +1,37 @@
 {% extends 'base2.html' %}
 
 {% block db_book %}
-    {#    <a href="/app_home/add_book/" class="btn btn-success btn-lg pull-right">新增图书</a>#}
-    <!-- Large modal -->
-    <button type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal"
-            data-target=".bs-example-modal-lg">新增图书
-    </button>
-
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <!-- 新增图书：按钮 -->
+    <div class="book-head">
+    <span class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target=".modal-book">新增图书
+    </span>
+    </div>
+    <!-- 新增图书：模态框 -->
+    <div class="modal fade modal-book" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <form class="form-horizontal" action="" method="post">
                     {% csrf_token %}
+                    <!-- 书名 -->
                     <div class="form-group">
                         <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
                             {{ form.book_name }}
-                            <span class="text-danger">{{ form.book_name.errors }}</span>
                         </div>
                     </div>
+                    <!-- 作者 -->
                     <div class="form-group">
                         <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
-                            <select name="auth_id_list" multiple class="form-control">
+                            <div class="clearfix" style="border: 1px solid #ccc; border-radius: 4px">
                                 {% for auth in auth_obj %}
-                                    <option value={{ auth.pk }}>{{ auth.auth_name }}</option>
+                                    <div class="pull-left small" style="padding: 20px">
+                                        <input type="checkbox" name="auth_id_list" value={{ auth.pk }}>
+                                        <span>{{ auth.auth_name }}</span>
+                                    </div>
                                 {% endfor %}
-                            </select>
-                            <span class="text-danger">{{ form.pub_id.errors }}</span>
+                            </div>
                         </div>
                     </div>
+                    <!-- 出版社 -->
                     <div class="form-group">
                         <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
                             <select name="pub_id" class="form-control">
@@ -35,7 +39,6 @@
                                     <option value={{ pub.pk }}>{{ pub.pub_name }}</option>
                                 {% endfor %}
                             </select>
-                            <span class="text-danger">{{ form.pub_id.errors }}</span>
                         </div>
                     </div>
                     <div class="form-group" style="padding-top: 10px">
@@ -48,9 +51,11 @@
         </div>
     </div>
 
+    <!-- 遍历图书 -->
     <table class="table table-striped">
+        <!-- 标题栏 -->
         <thead>
-        <tr class="info">
+        <tr class="info text-muted">
             <th width="100">编号</th>
             <th width="200">书名</th>
             <th width="200">出版社</th>
@@ -58,18 +63,27 @@
             <th></th>
         </tr>
         </thead>
+        <!-- 内容 -->
         <tbody>
         {% for book in book_obj %}
             <tr height="50">
-                <td>{{ forloop.counter }}</td>
+                <!-- 编号 -->
+                <td class="text-muted">{{ forloop.counter }}</td>
+                <!-- 书名 -->
                 <td>{{ book.book_name }}</td>
-                <td>{{ book.pub.pub_name }}</td>
+                <!-- 出版社超链接 -->
+                <td>
+                    <a href="/app_home/{{ book.pub_id }}/pub_info/">{{ book.pub.pub_name }}</a>
+                </td>
+                <!-- 作者超链接 -->
                 <td>{% for auth in book.auth.all %}
-                    <span>{{ auth.auth_name }}</span>
+                    <a href="/app_home/{{ auth.pk }}/auth_info/">{{ auth.auth_name }}</a>
                 {% endfor %}
                 </td>
                 <td>
+                    <!-- 删除按钮 -->
                     <a href="/app_home/{{ book.pk }}/delete_book" class="btn btn-danger btn-sm pull-right">删除</a>
+                    <!-- 修改按钮 -->
                     <a href="/app_home/{{ book.pk }}/change_book" class="btn btn-warning btn-sm pull-right"
                        style="margin-right: 5px">修改</a>
                 </td>

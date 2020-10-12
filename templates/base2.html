@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+<!-- 按钮：用户信息 -->
 {% block btn %}
     <div class="pull-right dropdown">
         <span class="pull-right btn btn-link usr iconfont" id="usr-logout" data-toggle="dropdown"
@@ -10,9 +11,11 @@
     </div>
 {% endblock %}
 
+<!-- 主体 -->
 {% block con %}
     <div class="container">
         <div class="row">
+            <!-- 左侧菜单 -->
             <div class="col-md-3 body-left">
                 <ul>
                     <a class="btn btn-block btn-info btn-lg pull-left" href="/app_home/home/">图书</a>
@@ -20,6 +23,7 @@
                     <a class="btn btn-block btn-info btn-lg pull-left" href="/app_home/publish/">出版社</a>
                 </ul>
             </div>
+            <!-- 右侧内容 -->
             <div class="col-md-9 body-right">
                 {% block db_book %}
                 {% endblock %}

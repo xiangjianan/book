@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+
+<!-- 跳转：登录界面 -->
 {% block meta %}
     <meta http-equiv="refresh" content="1;url=../login">
 {% endblock %}
@@ -6,9 +8,8 @@
 {% block con %}
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
-            </div>
-            <div class="col-md-6 body-login">
+            <!-- 注册成功提示 -->
+            <div class="col-md-offset-3 col-md-6 body-login">
                 <img class="center-block" src="/static/auth/reg_success.jpeg" style="width: 50%">
                 <p class="h3 text-center text-muted">注册成功</p>
             </div>

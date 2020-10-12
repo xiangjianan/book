@@ -55,8 +55,7 @@ ROOT_URLCONF = 'book.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,15 +80,15 @@ WSGI_APPLICATION = 'book.wsgi.application'
 #     }
 # }
 
-# mysql数据库 xjn
+# mysql数据库
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_book',  # 要连接的数据库，连接前需要创建好
-        'USER': 'root',  # 连接数据库的用户名
-        'PASSWORD': '699050',  # 连接数据库的密码
-        'HOST': '127.0.0.1',  # 连接主机，默认本级
-        'PORT': 3306  # 端口 默认3306
+        'NAME': 'db_book',
+        'USER': 'root',
+        'PASSWORD': '699050',
+        'HOST': '127.0.0.1',
+        'PORT': 3306
     }
 }
 
@@ -129,7 +128,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# 静态文件路径 xjn
+# 静态文件路径
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]

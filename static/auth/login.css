@@ -1,6 +1,3 @@
-/*.body .row>div{*/
-/*    height: 600px;*/
-/*}*/
 body{
     font: 14px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif;
 }
@@ -13,9 +10,6 @@ body{
     margin-top: 50px;
     padding-top: 50px;
     border-radius: 10px;
-}
-#login_auth{
-    padding-top: 5px;
 }
 .btn,
 .btn:hover{
