@@ -2,7 +2,8 @@
     width: 100%;
     height: 100px;
 }
-.book-head span{
+
+.book-head span {
     margin-top: 30px;
 }
 
@@ -20,4 +21,47 @@
 
 .body-right {
     height: 600px;
+}
+
+.pub-auth {
+    height: 250px;
+    padding: 20px;
+}
+
+.pub-auth > span {
+    margin: 10px 0;
+}
+
+.pub-auth .auth-bg, .book-head .auth-bg {
+    background: url("/static/home/auth_wall.jpeg") no-repeat top center;
+}
+
+.pub-auth .pub-bg, .book-head .pub-bg {
+    background: url("/static/home/pub_wall.jpeg") no-repeat top center;
+}
+
+.pub-auth .bg, .book-head .bg {
+    background-size: 100% auto;
+    transition: 0.3s all cubic-bezier(.46, 1, .23, 1.52);
+}
+
+.pub-auth .bg a {
+    height: 160px;
+    width: 100%;
+}
+
+.pub-auth .bg:hover {
+    background-size: 103% auto;
+    transition: 0.3s all cubic-bezier(.46, 1, .23, 1.52);
+}
+
+.book-head .bg {
+    width: 160px;
+    height: 160px;
+}
+
+.book-head .bg-text {
+    padding-top: 65px;
+    font-size: 40px;
+    font-weight: bold;
 }

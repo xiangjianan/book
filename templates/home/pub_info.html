@@ -3,7 +3,8 @@
 {% block db_book %}
     <!-- 标题 -->
     <div class="book-head">
-        <p class="h2 pull-left">出版社：{{ pub_obj.pub_name }}</p>
+        <div class="pub-bg bg pull-left"></div>
+        <span class="pull-left bg-text">{{ pub_obj.pub_name }}</span>
     </div>
     <!-- 遍历图书 -->
     <table class="table table-striped">
@@ -32,8 +33,65 @@
                 </td>
                 <td>
                     <a href="/app_home/{{ book.pk }}/delete_book" class="btn btn-danger btn-sm pull-right">删除</a>
-                    <a href="/app_home/{{ book.pk }}/change_book" class="btn btn-warning btn-sm pull-right"
-                       style="margin-right: 5px">修改</a>
+                    <span class="btn btn-warning btn-sm pull-left" style="margin-left: 20px" data-toggle="modal"
+                          data-target="#modal{{ book.pk }}">修改</span>
+                    <!-- 修改：模态框 -->
+                    <div class="modal fade" id="modal{{ book.pk }}" tabindex="-1" role="dialog"
+                         aria-labelledby="mySmallModalLabel">
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <form class="form-horizontal" action="" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <!-- 修改前 -->
+                                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                                            <input class="form-control" name="{{ book.pk }}book_name"
+                                                   value={{ book.book_name }} disabled>
+                                        </div>
+                                        <!-- 作者 -->
+                                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                                            <div class="clearfix"
+                                                 style="border: 1px solid #ccc; border-radius: 4px">
+                                                {% for auth2 in auth_all_obj %}
+                                                    <div class="pull-left small" style="padding: 10px">
+                                                    <!-- 检测关联关系 -->
+                                                    {% if auth2 in book.auth.all %}
+                                                        <input type="checkbox" name="auth_id_list"
+                                                               value={{ auth2.pk }} checked>
+                                                    {% else %}
+                                                        <input type="checkbox" name="auth_id_list"
+                                                               value={{ auth2.pk }}>
+                                                    {% endif %}
+
+                                                        <span>{{ auth2.auth_name }}</span>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <!-- 出版社 -->
+                                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                                            <select name="pub_id" class="form-control">
+                                                {% for pub in pub_all_obj %}
+                                                    <!-- 检测关联关系 -->
+                                                    {% if pub == book.pub %}
+                                                        <option value={{ pub.pk }} selected>{{ pub.pub_name }}</option>
+                                                    {% else %}
+                                                        <option value={{ pub.pk }}>{{ pub.pub_name }}</option>
+                                                    {% endif %}
+
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 10px">
+                                            <span class="btn btn-info btn-block change_book">添加</span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         {% endfor %}

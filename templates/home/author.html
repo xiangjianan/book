@@ -1,4 +1,4 @@
-{% extends 'home/home.html' %}
+{% extends 'base2.html' %}
 
 {% block db_book %}
     <!-- 新增作者：按钮 -->
@@ -27,55 +27,96 @@
         </div>
     </div>
     <!-- 遍历作者 -->
-    <table class="table table-striped table-hover">
-        <thead>
-        <tr class="info text-muted">
-            <th width="100">编号</th>
-            <th>作者</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for auth in auth_obj %}
-            <tr height="50">
-                <td class="text-muted">{{ forloop.counter }}</td>
-                <!-- 作者超链接 -->
-                <td>
-                    <a href="/app_home/{{ auth.pk }}/auth_info/">{{ auth.auth_name }}</a>
-                </td>
-                <td>
-                    <!-- 删除 -->
-                    <a href="/app_home/{{ auth.pk }}/delete_auth" class="btn btn-danger btn-sm
-                    pull-right">删除</a>
-                    <!-- 修改：按钮 -->
-                    <span class="btn btn-warning btn-sm pull-right" style="margin-right: 5px" data-toggle="modal"
-                          data-target="#modal{{ auth.pk }}">修改</span>
-                    <!-- 修改：模态框 -->
-                    <div class="modal fade" id="modal{{ auth.pk }}" tabindex="-1" role="dialog"
-                         aria-labelledby="mySmallModalLabel">
-                        <div class="modal-dialog modal-sm" role="document">
-                            <div class="modal-content">
-                                <form class="form-horizontal" action="" method="post">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
-                                            <!-- 修改前 -->
-                                            <input class="form-control" name="auth_name{{ auth.pk }}"
-                                                   value={{ auth.auth_name }}>
-                                        </div>
+    {#    <table class="table table-striped table-hover">#}
+    {#        <thead>#}
+    {#        <tr class="info text-muted">#}
+    {#            <th width="100">编号</th>#}
+    {#            <th>作者</th>#}
+    {#            <th></th>#}
+    {#        </tr>#}
+    {#        </thead>#}
+    {#        <tbody>#}
+    {#        {% for auth in auth_obj %}#}
+    {#            <tr height="50">#}
+    {#                <td class="text-muted">{{ forloop.counter }}</td>#}
+    {#                <!-- 作者超链接 -->#}
+    {#                <td>#}
+    {#                    <a href="/app_home/{{ auth.pk }}/auth_info/">{{ auth.auth_name }}</a>#}
+    {#                </td>#}
+    {#                <td>#}
+    {#                    <!-- 删除 -->#}
+    {#                    <a href="/app_home/{{ auth.pk }}/delete_auth" class="btn btn-danger btn-sm#}
+    {#                    pull-right">删除</a>#}
+    {#                    <!-- 修改：按钮 -->#}
+    {#                    <span class="btn btn-warning btn-sm pull-right" style="margin-right: 5px" data-toggle="modal"#}
+    {#                          data-target="#modal{{ auth.pk }}">修改</span>#}
+    {#                    <!-- 修改：模态框 -->#}
+    {#                    <div class="modal fade" id="modal{{ auth.pk }}" tabindex="-1" role="dialog"#}
+    {#                         aria-labelledby="mySmallModalLabel">#}
+    {#                        <div class="modal-dialog modal-sm" role="document">#}
+    {#                            <div class="modal-content">#}
+    {#                                <form class="form-horizontal" action="" method="post">#}
+    {#                                    {% csrf_token %}#}
+    {#                                    <div class="form-group">#}
+    {#                                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">#}
+    {#                                            <!-- 修改前 -->#}
+    {#                                            <input class="form-control" name="auth_name{{ auth.pk }}"#}
+    {#                                                   value={{ auth.auth_name }}>#}
+    {#                                        </div>#}
+    {#                                    </div>#}
+    {#                                    <div class="form-group">#}
+    {#                                        <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 10px">#}
+    {#                                            <span class="btn btn-info btn-block change_auth{{ auth.pk }}">添加</span>#}
+    {#                                        </div>#}
+    {#                                    </div>#}
+    {#                                </form>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </td>#}
+    {#            </tr>#}
+    {#        {% endfor %}#}
+    {#        </tbody>#}
+    {#    </table>#}
+    <!-- 遍历作者 -->
+    {% for auth in auth_obj %}
+        <div class="col-md-3 pub-auth">
+            <!-- 作者超链接 -->
+            <div class="auth-bg bg">
+                <a class="text-muted text-center center-block" href="/app_home/{{ auth.pk }}/auth_info/"></a>
+            </div>
+            <span class="text-center center-block small">{{ auth.auth_name }}</span>
+            <div>
+                <!-- 删除 -->
+                <a href="/app_home/{{ auth.pk }}/delete_auth" style="margin-right: 20px" class="btn btn-danger btn-sm
+            pull-right">删除</a>
+                <!-- 修改：按钮 -->
+                <span class="btn btn-warning btn-sm pull-left" style="margin-left: 20px" data-toggle="modal"
+                      data-target="#modal{{ auth.pk }}">修改</span>
+                <!-- 修改：模态框 -->
+                <div class="modal fade" id="modal{{ auth.pk }}" tabindex="-1" role="dialog"
+                     aria-labelledby="mySmallModalLabel">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <form class="form-horizontal" action="" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                                        <!-- 修改前 -->
+                                        <input class="form-control" name="{{ auth.pk }}auth_name"
+                                               value={{ auth.auth_name }}>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 10px">
-                                            <span class="btn btn-info btn-block change_auth{{ auth.pk }}">添加</span>
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 10px">
+                                        <span class="btn btn-info btn-block change_auth">修改</span>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}

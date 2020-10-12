@@ -1,10 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 
 # forms组件
 from app_home.home_forms import *
 
 # orm
 from app_home.models import *
+
+import json
 
 
 def home(request):
@@ -96,24 +98,44 @@ def delete_pub(request, p_id):
 
 
 def change_book(request, b_id):
-    Book.objects.filter(pk=b_id).delete()
-    return redirect('/app_home/home/')
+    # post
+    if request.method == "POST":
+        book_name = request.POST.get('book_name')
+        pub_id = request.POST.get('pub_id')
+        auth_id_list = request.POST.get('auth_id_list')
+        auth_id_list = json.loads(auth_id_list)
+        # 修改表数据
+        Book.objects.filter(pk=b_id).update(book_name=book_name, pub_id=pub_id)
+        book_obj = Book.objects.filter(pk=b_id).first()
+        book_obj.auth.clear()
+        book_obj.auth.add(*auth_id_list)
+        return HttpResponse(book_name)
 
 
 def change_auth(request, a_id):
-    Author.objects.filter(pk=a_id).delete()
-    return redirect('/app_home/author/')
+    # post
+    if request.method == "POST":
+        auth_name = request.POST.get('auth_name')
+        # 修改表数据
+        Author.objects.filter(pk=a_id).update(auth_name=auth_name)
+        return HttpResponse(auth_name)
 
 
 def change_pub(request, p_id):
-    Publish.objects.filter(pk=p_id).delete()
-    return redirect('/app_home/publish/')
+    # post
+    if request.method == "POST":
+        pub_name = request.POST.get('pub_name')
+        # 修改表数据
+        Publish.objects.filter(pk=p_id).update(pub_name=pub_name)
+        return HttpResponse(pub_name)
 
 
 def pub_info(request, p_id):
     """ 出版社：所有图书 """
     usr = request.user.username
     pub_obj = Publish.objects.filter(pk=p_id).first()
+    pub_all_obj = Publish.objects.all()
+    auth_all_obj = Author.objects.all()
     book_obj = Book.objects.filter(pub=pub_obj)
     return render(request, 'home/pub_info.html', locals())
 
@@ -122,5 +144,7 @@ def auth_info(request, a_id):
     """ 作者：所有图书 """
     usr = request.user.username
     auth_obj = Author.objects.filter(pk=a_id).first()
+    auth_all_obj = Author.objects.all()
     book_obj = auth_obj.book_set.all()
+    pub_obj = Publish.objects.all()
     return render(request, 'home/auth_info.html', locals())
