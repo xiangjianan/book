@@ -1,7 +1,51 @@
 {% extends 'base2.html' %}
 
 {% block db_book %}
-    <a href="/app_home/add_book/" class="btn btn-success btn-lg pull-right">新增图书</a>
+{#    <a href="/app_home/add_book/" class="btn btn-success btn-lg pull-right">新增图书</a>#}
+    <!-- Large modal -->
+    <button type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">新增图书
+    </button>
+
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form class="form-horizontal" action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                            {{ form.book_name }}
+                            <span class="text-danger">{{ form.book_name.errors }}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                            <select name="auth_id_list" multiple class="form-control">
+                                {% for auth in auth_obj %}
+                                    <option value={{ auth.pk }}>{{ auth.auth_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="text-danger">{{ form.pub_id.errors }}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                            <select name="pub_id" class="form-control">
+                                {% for pub in pub_obj %}
+                                    <option value={{ pub.pk }}>{{ pub.pub_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="text-danger">{{ form.pub_id.errors }}</span>
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-top: 10px">
+                        <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 10px">
+                            <button type="submit" class="btn btn-info btn-block">添加</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <table class="table table-striped">
         <thead>
@@ -19,7 +63,7 @@
                 <td>{{ book.book_name }}</td>
                 <td>{{ book.pub.pub_name }}</td>
                 <td>{% for auth in book.auth.all %}
-                <span>{{ auth.auth_name }}</span>
+                    <span>{{ auth.auth_name }}</span>
                 {% endfor %}
                 </td>
             </tr>
