@@ -1,4 +1,5 @@
 $(function () {
+    // 修改作者信息
     $('.change_auth').click(function () {
         // 找到input标签的value值
         let val = $(this).parent().parent().prev().children().children().val();
@@ -22,6 +23,8 @@ $(function () {
             }
         })
     })
+
+    // 修改出版社信息
     $('.change_pub').click(function () {
         // 找到input标签的value值
         let val = $(this).parent().parent().prev().children().children().val();
@@ -45,6 +48,8 @@ $(function () {
             }
         })
     })
+
+    // 修改书籍信息
     $('.change_book').click(function () {
         // 找到input标签的value值
         let val = $(this).parent().parent().prev().children().children().val();
@@ -74,7 +79,7 @@ $(function () {
             },
             success: function (data) {
                 if (data) {
-                    location.href = '/app_home/home/';
+                    location.href = data;
                 }
             }
         })
