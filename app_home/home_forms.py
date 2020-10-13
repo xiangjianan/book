@@ -4,18 +4,18 @@ from django.core.exceptions import ValidationError
 from app_home.models import Book
 
 
-# add作者
 class AddFormAuth(forms.Form):
+    """ 新增作者 """
     auth_name = forms.CharField(widget=widgets.TextInput(attrs={'class': 'form-control', 'placeholder': '作者名字'}))
 
 
-# add出版社
 class AddFormPub(forms.Form):
+    """ 新增出版社 """
     pub_name = forms.CharField(widget=widgets.TextInput(attrs={'class': 'form-control', 'placeholder': '出版社名字'}))
 
 
-# add书
 class AddFormBook(forms.Form):
+    """ 新增图书 """
     book_name = forms.CharField(widget=widgets.TextInput(attrs={'class': 'form-control', 'placeholder': '书名'}))
 
     def clean_book_name(self):

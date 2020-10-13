@@ -14,6 +14,13 @@ import json
 request_ip = None
 
 
+def get_set_ip(request):
+    """ 获取当前页面的IP"""
+    global request_ip
+    request_ip = re.findall(r'\'[\w/]+\'', str(request))
+    request_ip = request_ip[0][1:-1]
+
+
 def home(request):
     """ 主页，显示所有书籍 """
     # 用户登录状态过期，回到login
@@ -36,6 +43,7 @@ def home(request):
                 # 添加失败提示
                 return render(request, 'home/home_err.html', locals())
         # get
+        get_set_ip(request)  # 获取当前IP
         usr = request.user.username  # 用户名
         book_obj = Book.objects.all()  # 所有书
         form = AddFormBook()
@@ -86,7 +94,6 @@ def author(request):
 
 def delete_book(request, b_id):
     """ 删除书 """
-    global request_ip
     Book.objects.filter(pk=b_id).delete()
     return redirect(request_ip)
 
@@ -104,6 +111,7 @@ def delete_pub(request, p_id):
 
 
 def change_book(request, b_id):
+    """ 修改书籍信息 """
     # post
     if request.method == "POST":
         book_name = request.POST.get('book_name')
@@ -119,46 +127,50 @@ def change_book(request, b_id):
 
 
 def change_auth(request, a_id):
+    """ 修改作者信息 """
     # post
     if request.method == "POST":
-        auth_name = request.POST.get('auth_name')
-        # 修改表数据
-        Author.objects.filter(pk=a_id).update(auth_name=auth_name)
-        return HttpResponse(request_ip)
+        form = AddFormAuth(request.POST)
+        # forms校验
+        if form.is_valid():
+            auth_name = request.POST.get('auth_name')
+            # 修改表数据
+            Author.objects.filter(pk=a_id).update(auth_name=auth_name)
+            return HttpResponse(request_ip)
 
 
 def change_pub(request, p_id):
+    """ 修改出版社信息 """
     # post
     if request.method == "POST":
-        pub_name = request.POST.get('pub_name')
-        # 修改表数据
-        Publish.objects.filter(pk=p_id).update(pub_name=pub_name)
-        return HttpResponse(request_ip)
+        form = AddFormPub(request.POST)
+        # forms校验
+        if form.is_valid():
+            pub_name = request.POST.get('pub_name')
+            # 修改表数据
+            Publish.objects.filter(pk=p_id).update(pub_name=pub_name)
+            return HttpResponse(request_ip)
 
 
 def pub_info(request, p_id):
-    """ 出版社：所有图书 """
-    global request_ip
+    """ 出版社超链接：显示该出版社的所有图书 """
     usr = request.user.username
     pub_obj = Publish.objects.filter(pk=p_id).first()
     pub_all_obj = Publish.objects.all()
     auth_all_obj = Author.objects.all()
     book_obj = Book.objects.filter(pub=pub_obj)
     # 获取当前请求ip
-    request_ip = re.findall(r'\'[\w/]+\'', str(request))
-    request_ip = request_ip[0][1:-1]
+    get_set_ip(request)
     return render(request, 'home/pub_info.html', locals())
 
 
 def auth_info(request, a_id):
-    """ 作者：所有图书 """
-    global request_ip
+    """ 作者超链接：显示该作者的所有图书 """
     usr = request.user.username
     auth_obj = Author.objects.filter(pk=a_id).first()
     auth_all_obj = Author.objects.all()
     book_obj = auth_obj.book_set.all()
     pub_obj = Publish.objects.all()
     # 获取当前请求ip
-    request_ip = re.findall(r'\'[\w/]+\'', str(request))
-    request_ip = request_ip[0][1:-1]
+    get_set_ip(request)
     return render(request, 'home/auth_info.html', locals())

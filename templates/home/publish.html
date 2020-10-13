@@ -29,35 +29,6 @@
     </div>
 
     <!-- 遍历 -->
-{#    <table class="table table-striped">#}
-{#        <thead>#}
-{#        <tr class="info text-muted">#}
-{#            <th width="100">编号</th>#}
-{#            <th>出版社</th>#}
-{#            <th></th>#}
-{#        </tr>#}
-{#        </thead>#}
-{#        <tbody>#}
-{#        {% for pub in pub_obj %}#}
-{#            <tr height="50">#}
-{#                <td class="text-muted">{{ forloop.counter }}</td>#}
-{#                <!-- 出版社超链接 -->#}
-{#                <td>#}
-{#                    <a href="/app_home/{{ pub.pk }}/pub_info/">{{ pub.pub_name }}</a>#}
-{#                </td>#}
-{##}
-{#                <td>#}
-{#                    <!-- 删除：按钮 -->#}
-{#                    <a href="/app_home/{{ pub.pk }}/delete_pub" class="btn btn-danger btn-sm#}
-{#                    pull-right">删除</a>#}
-{#                    <!-- 修改：按钮 -->#}
-{#                    <a href="/app_home/{{ pub.pk }}/change_pub" class="btn btn-warning btn-sm pull-right"#}
-{#                       style="margin-right: 5px">修改</a>#}
-{#                </td>#}
-{#            </tr>#}
-{#        {% endfor %}#}
-{#        </tbody>#}
-{#    </table>#}
     {% for pub in pub_obj %}
         <div class="col-md-3 pub-auth">
             <!-- 出版社超链接 -->
@@ -88,6 +59,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 10px">
+                                        <!-- home.js -->
                                         <span class="btn btn-info btn-block change_pub">确认修改</span>
                                     </div>
                                 </div>
