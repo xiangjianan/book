@@ -34,7 +34,7 @@ def home(request):
             auth_id_list = request.POST.getlist('auth_id_list')
             form = AddFormBook(request.POST)
             # forms规则校验
-            if form.is_valid():
+            if form.is_valid() and pub_id:
                 book_obj = Book.objects.create(book_name=book_name, pub_id=pub_id)
                 book_obj.auth.add(*auth_id_list)
                 # 添加成功，回到主页
