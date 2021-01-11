@@ -29,7 +29,7 @@ def home(request):
     else:
         # post，添加图书
         if request.method == "POST":
-            book_name = request.POST.get('book_name')
+            book_name = f"《{request.POST.get('book_name')}》"
             pub_id = request.POST.get('pub_id')
             auth_id_list = request.POST.getlist('auth_id_list')
             form = AddFormBook(request.POST)
