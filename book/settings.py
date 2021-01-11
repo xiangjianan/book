@@ -25,7 +25,8 @@ SECRET_KEY = '7vjr$h*fzfs46vwln7ijznoa=_@u4lhz(+b(_m4&m4&%w5$i6i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+STATIC_ROOT = '/root/static/book_static/'
 
 # Application definition
 
