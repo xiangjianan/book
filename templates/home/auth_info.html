@@ -9,25 +9,25 @@
     <!-- 遍历图书 -->
     <table class="table table-striped">
         <thead>
-        <tr class="info text-muted">
-            <th width="100">编号</th>
-            <th width="200">书名</th>
-            <th width="200">出版社</th>
-            <th width="200">作者</th>
+        <tr class="info text-muted" align="center">
+            <th width="50" style="text-align: center">编号</th>
+            <th width="250" style="text-align: center">书名</th>
+            <th width="200" style="text-align: center">出版社</th>
+            <th width="200" style="text-align: center">作者</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         {% for book in book_obj %}
-            <tr height="50">
-                <td class="text-muted">{{ forloop.counter }}</td>
-                <td>{{ book.book_name }}</td>
+            <tr height="50" align="center">
+                <td class="text-muted small">{{ forloop.counter }}</td>
+                <td class="small">{{ book.book_name }}</td>
                 <!-- 出版社超链接 -->
-                <td>
+                <td class="small">
                     <a href="/app_home/{{ book.pub_id }}/pub_info/">{{ book.pub.pub_name }}</a>
                 </td>
                 <!-- 作者超链接 -->
-                <td>{% for auth in book.auth.all %}
+                <td class="small">{% for auth in book.auth.all %}
                     <a href="/app_home/{{ auth.pk }}/auth_info/">{{ auth.auth_name }}</a>
                 {% endfor %}
                 </td>
