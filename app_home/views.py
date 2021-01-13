@@ -46,7 +46,7 @@ def home(request):
         # get
         get_set_ip(request)  # 获取当前IP
         usr = request.user.username  # 用户名
-        book_obj = Book.objects.all()  # 所有书
+        book_obj = Book.objects.all().order_by('-pk')  # 所有书
         form = AddFormBook()
         pub_obj = Publish.objects.all()  # 所有出版社，添加新书时用
         auth_obj = Author.objects.all()  # 所有作者，添加新书时用
@@ -70,7 +70,7 @@ def publish(request):
             # 添加成功，刷新页面
             return redirect('/app_home/publish/')
     usr = request.user.username
-    pub_obj = Publish.objects.all()
+    pub_obj = Publish.objects.all().order_by('-pk')
     form = AddFormPub()
     return render(request, "home/publish.html", locals())
 
@@ -88,7 +88,7 @@ def author(request):
             return redirect('/app_home/author/')
     # get
     usr = request.user.username
-    auth_obj = Author.objects.all()
+    auth_obj = Author.objects.all().order_by('-pk')
     form = AddFormAuth()
     return render(request, "home/author.html", locals())
 
@@ -159,7 +159,7 @@ def pub_info(request, p_id):
     pub_obj = Publish.objects.filter(pk=p_id).first()
     pub_all_obj = Publish.objects.all()
     auth_all_obj = Author.objects.all()
-    book_obj = Book.objects.filter(pub=pub_obj)
+    book_obj = Book.objects.filter(pub=pub_obj).order_by('-pk')
     # 获取当前请求ip
     get_set_ip(request)
     return render(request, 'home/pub_info.html', locals())
@@ -170,7 +170,7 @@ def auth_info(request, a_id):
     usr = request.user.username
     auth_obj = Author.objects.filter(pk=a_id).first()
     auth_all_obj = Author.objects.all()
-    book_obj = auth_obj.book_set.all()
+    book_obj = auth_obj.book_set.all().order_by('-pk')
     pub_obj = Publish.objects.all()
     # 获取当前请求ip
     get_set_ip(request)
