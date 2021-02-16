@@ -65,7 +65,7 @@
         </thead>
         <!-- 内容 -->
         <tbody>
-        {% for book in book_obj %}
+        {% for book in book_list %}
             <tr height="50" align="center">
                 <!-- 编号 -->
                 <td class="text-muted small">{{ forloop.counter }}</td>
@@ -97,7 +97,7 @@
                                         <!-- 修改前 -->
                                         <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
                                             <input class="form-control" name="{{ book.pk }}book_name"
-                                                   value={{ book.book_name }} disabled>
+                                                   value="{{ book.book_name }}">
                                         </div>
                                         <!-- 作者 -->
                                         <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
@@ -149,4 +149,11 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="page-nav">
+        <nav>
+            <ul class="pagination">
+                {{ pager.page_html|safe }}
+            </ul>
+        </nav>
+    </div>
 {% endblock %}

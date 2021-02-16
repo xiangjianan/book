@@ -28,7 +28,7 @@
     </div>
 
     <!-- 遍历作者 -->
-    {% for auth in auth_obj %}
+    {% for auth in auth_list %}
         <div class="col-md-3 pub-auth">
             <!-- 作者超链接 -->
             <div class="auth-bg bg">
@@ -69,4 +69,11 @@
             </div>
         </div>
     {% endfor %}
+    <div class="page-nav">
+        <nav>
+            <ul class="pagination">
+                {{ pager.page_html|safe }}
+            </ul>
+        </nav>
+    </div>
 {% endblock %}

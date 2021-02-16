@@ -29,7 +29,7 @@
     </div>
 
     <!-- 遍历 -->
-    {% for pub in pub_obj %}
+    {% for pub in pub_list %}
         <div class="col-md-3 pub-auth">
             <!-- 出版社超链接 -->
             <div class="pub-bg bg">
@@ -70,4 +70,11 @@
             </div>
         </div>
     {% endfor %}
+    <div class="page-nav">
+        <nav>
+            <ul class="pagination">
+                {{ pager.page_html|safe }}
+            </ul>
+        </nav>
+    </div>
 {% endblock %}

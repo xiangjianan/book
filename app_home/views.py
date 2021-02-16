@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-
+from django.core.paginator import Paginator, EmptyPage
 import re
 
 # forms组件
@@ -10,14 +10,16 @@ from app_home.models import *
 
 import json
 
-# 全局变量，当前页面IP
-request_ip = None
+from .pagination import Pagination
+
+request_ip = None  # 全局变量，当前页面IP
+per_page_count = 8  # 分页量
 
 
 def get_set_ip(request):
     """ 获取当前页面的IP"""
     global request_ip
-    request_ip = re.findall(r'\'[\w/]+\'', str(request))
+    request_ip = re.findall(r'\'[\w/]+/', str(request))
     request_ip = request_ip[0][1:-1]
 
 
@@ -46,7 +48,21 @@ def home(request):
         # get
         get_set_ip(request)  # 获取当前IP
         usr = request.user.username  # 用户名
-        book_obj = Book.objects.all().order_by('-pk')  # 所有书
+        # book_obj = Book.objects.all().order_by('-pk')  # 所有书
+
+        # 分页器
+        all_count = Book.objects.all().count()
+        query_params = request.GET.copy()
+        query_params._mutable = True
+        pager = Pagination(
+            current_page=request.GET.get('page'),
+            all_count=all_count,
+            base_url=request.path_info,
+            query_params=query_params,
+            per_page=per_page_count+1,
+        )
+        book_list = Book.objects.all().order_by('-pk')[pager.start:pager.end]
+
         form = AddFormBook()
         pub_obj = Publish.objects.all()  # 所有出版社，添加新书时用
         auth_obj = Author.objects.all()  # 所有作者，添加新书时用
@@ -70,7 +86,21 @@ def publish(request):
             # 添加成功，刷新页面
             return redirect('/app_home/publish/')
     usr = request.user.username
-    pub_obj = Publish.objects.all().order_by('-pk')
+    # pub_obj = Publish.objects.all().order_by('-pk')
+
+    # 分页器
+    all_count = Publish.objects.all().count()
+    query_params = request.GET.copy()
+    query_params._mutable = True
+    pager = Pagination(
+        current_page=request.GET.get('page'),
+        all_count=all_count,
+        base_url=request.path_info,
+        query_params=query_params,
+        per_page=per_page_count,
+    )
+    pub_list = Publish.objects.all().order_by('-pk')[pager.start:pager.end]
+
     form = AddFormPub()
     return render(request, "home/publish.html", locals())
 
@@ -88,7 +118,21 @@ def author(request):
             return redirect('/app_home/author/')
     # get
     usr = request.user.username
-    auth_obj = Author.objects.all().order_by('-pk')
+    # auth_obj = Author.objects.all().order_by('-pk')
+
+    # 分页器
+    all_count = Author.objects.all().count()
+    query_params = request.GET.copy()
+    query_params._mutable = True
+    pager = Pagination(
+        current_page=request.GET.get('page'),
+        all_count=all_count,
+        base_url=request.path_info,
+        query_params=query_params,
+        per_page=per_page_count,
+    )
+    auth_list = Author.objects.all().order_by('-pk')[pager.start:pager.end]
+
     form = AddFormAuth()
     return render(request, "home/author.html", locals())
 

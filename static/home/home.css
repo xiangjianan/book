@@ -65,3 +65,13 @@
     font-size: 40px;
     font-weight: bold;
 }
+
+/* 分页 */
+.page-nav{
+    width: 500px;
+    text-align: center;
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    margin-left: -250px;
+}
