@@ -4,7 +4,7 @@
     <!-- 新增出版社：按钮 -->
     <div class="book-head">
         <span class="btn btn-success btn-lg pull-right" data-toggle="modal"
-              data-target=".modal-pub">新增出版社
+              data-target=".modal-pub">添加
         </span>
     </div>
     <!-- 新增出版社：模态框 -->
@@ -14,12 +14,12 @@
                 <form class="form-horizontal" action="" method="post">
                     {% csrf_token %}
                     <div class="form-group">
-                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px;">
+                        <div class="col-md-offset-1 col-md-10" style="margin-top: 30px;">
                             {{ form.pub_name }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 10px">
+                        <div class="col-md-offset-1 col-md-10" style="margin-bottom: 10px">
                             <button type="submit" class="btn btn-info btn-block">添加</button>
                         </div>
                     </div>
@@ -51,14 +51,14 @@
                             <form class="form-horizontal" action="" method="post">
                                 {% csrf_token %}
                                 <div class="form-group">
-                                    <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                                    <div class="col-md-offset-1 col-md-10" style="margin-top: 30px">
                                         <!-- 修改前 -->
                                         <input class="form-control" name="{{ pub.pk }}auth_name"
                                                value="{{ pub.pub_name }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 10px">
+                                    <div class="col-md-offset-1 col-md-10" style="margin-bottom: 10px">
                                         <!-- home.js -->
                                         <span class="btn btn-info btn-block change_pub">确认修改</span>
                                     </div>

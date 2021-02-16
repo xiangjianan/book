@@ -3,7 +3,7 @@
 {% block db_book %}
     <!-- 新增图书：按钮 -->
     <div class="book-head">
-    <span class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target=".modal-book">新增图书
+    <span class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target=".modal-book">添加
     </span>
     </div>
     <!-- 新增图书：模态框 -->
@@ -14,13 +14,13 @@
                     {% csrf_token %}
                     <!-- 书名 -->
                     <div class="form-group">
-                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                        <div class="col-md-offset-1 col-md-10" style="margin-top: 30px">
                             {{ form.book_name }}
                         </div>
                     </div>
                     <!-- 作者 -->
                     <div class="form-group">
-                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                        <div class="col-md-offset-1 col-md-10" style="margin-top: 30px">
                             <div class="clearfix" style="border: 1px solid #ccc; border-radius: 4px">
                                 {% for auth in auth_obj %}
                                     <div class="pull-left small" style="padding: 10px">
@@ -33,7 +33,7 @@
                     </div>
                     <!-- 出版社 -->
                     <div class="form-group">
-                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                        <div class="col-md-offset-1 col-md-10" style="margin-top: 30px">
                             <select name="pub_id" class="form-control">
                                 {% for pub in pub_obj %}
                                     <option value={{ pub.pk }}>{{ pub.pub_name }}</option>
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="form-group" style="padding-top: 10px">
-                        <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 10px">
+                        <div class="col-md-offset-1 col-md-10" style="margin-bottom: 10px">
                             <button type="submit" class="btn btn-info btn-block">添加</button>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                 </td>
                 <!-- 作者超链接 -->
                 <td class="small">{% for auth in book.auth.all %}
-                    <a href="/app_home/{{ auth.pk }}/auth_info/">{{ auth.auth_name }}</a> /
+                    &nbsp;<a href="/app_home/{{ auth.pk }}/auth_info/">{{ auth.auth_name }}</a>&nbsp;
                 {% endfor %}
                 </td>
                 <td>
@@ -95,12 +95,12 @@
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <!-- 修改前 -->
-                                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                                        <div class="col-md-offset-1 col-md-10" style="margin-top: 30px">
                                             <input class="form-control" name="{{ book.pk }}book_name"
                                                    value="{{ book.book_name }}">
                                         </div>
                                         <!-- 作者 -->
-                                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                                        <div class="col-md-offset-1 col-md-10" style="margin-top: 30px">
                                             <div class="clearfix"
                                                  style="border: 1px solid #ccc; border-radius: 4px">
                                                 {% for auth in auth_obj %}
@@ -120,7 +120,7 @@
                                             </div>
                                         </div>
                                         <!-- 出版社 -->
-                                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                                        <div class="col-md-offset-1 col-md-10" style="margin-top: 30px">
                                             <select name="pub_id" class="form-control">
                                                 {% for pub in pub_obj %}
                                                     <!-- 检测关联关系 -->
@@ -135,7 +135,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 10px">
+                                        <div class="col-md-offset-1 col-md-10" style="margin-bottom: 10px">
                                             <!-- home.js -->
                                             <span class="btn btn-info btn-block change_book">确认修改</span>
                                         </div>

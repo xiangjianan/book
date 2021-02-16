@@ -45,12 +45,12 @@
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <!-- 修改前 -->
-                                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                                        <div class="col-md-offset-1 col-md-10" style="margin-top: 30px">
                                             <input class="form-control" name="{{ book.pk }}book_name"
                                                    value={{ book.book_name }} disabled>
                                         </div>
                                         <!-- 作者 -->
-                                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                                        <div class="col-md-offset-1 col-md-10" style="margin-top: 30px">
                                             <div class="clearfix"
                                                  style="border: 1px solid #ccc; border-radius: 4px">
                                                 {% for auth2 in auth_all_obj %}
@@ -70,7 +70,7 @@
                                             </div>
                                         </div>
                                         <!-- 出版社 -->
-                                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                                        <div class="col-md-offset-1 col-md-10" style="margin-top: 30px">
                                             <select name="pub_id" class="form-control">
                                                 {% for pub in pub_all_obj %}
                                                     <!-- 检测关联关系 -->
@@ -85,7 +85,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 10px">
+                                        <div class="col-md-offset-1 col-md-10" style="margin-bottom: 10px">
                                             <!-- home.js -->
                                             <span class="btn btn-info btn-block change_book">确认修改</span>
                                         </div>

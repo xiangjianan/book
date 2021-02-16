@@ -4,7 +4,7 @@
     <!-- 新增作者：按钮 -->
     <div class="book-head">
     <span class="btn btn-success btn-lg pull-right" data-toggle="modal"
-          data-target=".modal-auth">新增作者</span>
+          data-target=".modal-auth">添加</span>
     </div>
     <!-- 新增作者：模态框 -->
     <div class="modal fade modal-auth" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -13,12 +13,12 @@
                 <form class="form-horizontal" action="" method="post">
                     {% csrf_token %}
                     <div class="form-group">
-                        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                        <div class="col-md-offset-1 col-md-10" style="margin-top: 30px">
                             {{ form.auth_name }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 10px">
+                        <div class="col-md-offset-1 col-md-10" style="margin-bottom: 10px">
                             <button type="submit" class="btn btn-info btn-block">添加</button>
                         </div>
                     </div>
@@ -50,14 +50,14 @@
                             <form class="form-horizontal" action="" method="post">
                                 {% csrf_token %}
                                 <div class="form-group">
-                                    <div class="col-sm-offset-1 col-sm-10" style="margin-top: 30px">
+                                    <div class="col-md-offset-1 col-md-10" style="margin-top: 30px">
                                         <!-- 修改前 -->
                                         <input class="form-control" name="{{ auth.pk }}auth_name"
                                                value="{{ auth.auth_name }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 10px">
+                                    <div class="col-md-offset-1 col-md-10" style="margin-bottom: 10px">
                                         <!-- home.js -->
                                         <span class="btn btn-info btn-block change_auth">确认修改</span>
                                     </div>

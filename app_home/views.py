@@ -16,64 +16,75 @@ request_ip = None  # 全局变量，当前页面IP
 per_page_count = 8  # 分页量
 
 
+def auth(func):
+    """ 登录认证 """
+
+    def wrapper(*args, **kwargs):
+        # 用户登录状态过期，回到login
+        if args[0].user.is_anonymous:
+            return redirect('/app_auth/login/')
+        return func(*args, **kwargs)
+
+    return wrapper
+
+
 def get_set_ip(request):
-    """ 获取当前页面的IP"""
+    """ 获取当前页面的IP """
     global request_ip
     request_ip = re.findall(r'\'[\w/]+/', str(request))
     request_ip = request_ip[0][1:-1]
 
 
+@auth
 def home(request):
     """ 主页，显示所有书籍 """
-    # 用户登录状态过期，回到login
-    if request.user.is_anonymous:
-        return redirect('/app_auth/login/')
-    else:
-        # post，添加图书
-        if request.method == "POST":
-            book_name = request.POST.get('book_name').replace("《", "").replace("》", "")
-            book_name = f'《{book_name}》'
-            pub_id = request.POST.get('pub_id')
-            auth_id_list = request.POST.getlist('auth_id_list')
-            form = AddFormBook(request.POST)
-            # forms规则校验
-            if form.is_valid() and pub_id:
-                book_obj = Book.objects.create(book_name=book_name, pub_id=pub_id)
-                book_obj.auth.add(*auth_id_list)
-                # 添加成功，回到主页
-                return redirect('/app_home/home/')
-            else:
-                # 添加失败提示
-                return render(request, 'home/home_err.html', locals())
-        # get
-        get_set_ip(request)  # 获取当前IP
-        usr = request.user.username  # 用户名
-        # book_obj = Book.objects.all().order_by('-pk')  # 所有书
+    # post，添加图书
+    if request.method == "POST":
+        book_name = request.POST.get('book_name').replace("《", "").replace("》", "")
+        book_name = f'《{book_name}》'
+        pub_id = request.POST.get('pub_id')
+        auth_id_list = request.POST.getlist('auth_id_list')
+        form = AddFormBook(request.POST)
+        # forms规则校验
+        if form.is_valid() and pub_id:
+            book_obj = Book.objects.create(book_name=book_name, pub_id=pub_id)
+            book_obj.auth.add(*auth_id_list)
+            # 添加成功，回到主页
+            return redirect('/app_home/home/')
+        else:
+            # 添加失败提示
+            return render(request, 'home/home_err.html', locals())
+    # get
+    get_set_ip(request)  # 获取当前IP
+    usr = request.user.username  # 用户名
+    # book_obj = Book.objects.all().order_by('-pk')  # 所有书
 
-        # 分页器
-        all_count = Book.objects.all().count()
-        query_params = request.GET.copy()
-        query_params._mutable = True
-        pager = Pagination(
-            current_page=request.GET.get('page'),
-            all_count=all_count,
-            base_url=request.path_info,
-            query_params=query_params,
-            per_page=per_page_count+1,
-        )
-        book_list = Book.objects.all().order_by('-pk')[pager.start:pager.end]
+    # 分页器
+    all_count = Book.objects.all().count()
+    query_params = request.GET.copy()
+    query_params._mutable = True
+    pager = Pagination(
+        current_page=request.GET.get('page'),
+        all_count=all_count,
+        base_url=request.path_info,
+        query_params=query_params,
+        per_page=per_page_count + 1,
+    )
+    book_list = Book.objects.all().order_by('-pk')[pager.start:pager.end]
 
-        form = AddFormBook()
-        pub_obj = Publish.objects.all()  # 所有出版社，添加新书时用
-        auth_obj = Author.objects.all()  # 所有作者，添加新书时用
-        return render(request, "home/home.html", locals())
+    form = AddFormBook()
+    pub_obj = Publish.objects.all()  # 所有出版社，添加新书时用
+    auth_obj = Author.objects.all()  # 所有作者，添加新书时用
+    return render(request, "home/home.html", locals())
 
 
+@auth
 def home_err(request):
     """ 书籍添加失败提示 """
     return render(request, "home/home_err.html")
 
 
+@auth
 def publish(request):
     """ 出版社页面 """
     # post，添加出版社
@@ -105,6 +116,7 @@ def publish(request):
     return render(request, "home/publish.html", locals())
 
 
+@auth
 def author(request):
     """ 作者页面 """
     # post，添加作者
@@ -137,24 +149,28 @@ def author(request):
     return render(request, "home/author.html", locals())
 
 
+@auth
 def delete_book(request, b_id):
     """ 删除书 """
     Book.objects.filter(pk=b_id).delete()
     return redirect(request_ip)
 
 
+@auth
 def delete_auth(request, a_id):
     """ 删除作者"""
     Author.objects.filter(pk=a_id).delete()
     return redirect('/app_home/author/')
 
 
+@auth
 def delete_pub(request, p_id):
     """ 删除出版社，及其对应所有书籍 """
     Publish.objects.filter(pk=p_id).delete()
     return redirect('/app_home/publish/')
 
 
+@auth
 def change_book(request, b_id):
     """ 修改书籍信息 """
     # post
@@ -171,6 +187,7 @@ def change_book(request, b_id):
         return HttpResponse(request_ip)
 
 
+@auth
 def change_auth(request, a_id):
     """ 修改作者信息 """
     # post
@@ -184,6 +201,7 @@ def change_auth(request, a_id):
             return HttpResponse(request_ip)
 
 
+@auth
 def change_pub(request, p_id):
     """ 修改出版社信息 """
     # post
@@ -197,6 +215,7 @@ def change_pub(request, p_id):
             return HttpResponse(request_ip)
 
 
+@auth
 def pub_info(request, p_id):
     """ 出版社超链接：显示该出版社的所有图书 """
     usr = request.user.username
@@ -209,6 +228,7 @@ def pub_info(request, p_id):
     return render(request, 'home/pub_info.html', locals())
 
 
+@auth
 def auth_info(request, a_id):
     """ 作者超链接：显示该作者的所有图书 """
     usr = request.user.username
