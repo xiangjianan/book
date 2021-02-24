@@ -1,0 +1,16 @@
+{% extends 'base2.html' %}
+
+{% block db_book %}
+    <div class="content-container">
+        <div class="col-md-3 col-md-offset-4 alert alert-danger delete-css" role="alert" style="margin-top: 100px">
+            <form method="post">
+                {% csrf_token %}
+                <p class="text-center font-16" ><i class="fa fa-warning text-center" aria-hidden="true"></i> 删除后将不可恢复，请确定是否删除？</p>
+                <div style="margin-top: 20px;">
+                    <a href="{{ cancel }}" class="btn btn-default btn-sm delete-css-left">取 消</a>
+                    <input type="submit" style="float: right" class="btn btn-danger btn-sm delete-css-right" value="确 认">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

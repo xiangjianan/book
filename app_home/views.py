@@ -45,8 +45,9 @@ def home(request):
         pub_id = request.POST.get('pub_id')
         auth_id_list = request.POST.getlist('auth_id_list')
         form = AddFormBook(request.POST)
+
         # forms规则校验
-        if form.is_valid() and pub_id:
+        if form.is_valid() and pub_id and not Book.objects.filter(book_name=book_name).first():
             book_obj = Book.objects.create(book_name=book_name, pub_id=pub_id)
             book_obj.auth.add(*auth_id_list)
             # 添加成功，回到主页
@@ -152,6 +153,9 @@ def author(request):
 @auth
 def delete_book(request, b_id):
     """ 删除书 """
+    if request.method == 'GET':
+        # 确认删除提示页面
+        return render(request, 'home/del.html',{'cancel': request_ip})
     Book.objects.filter(pk=b_id).delete()
     return redirect(request_ip)
 
