@@ -8,17 +8,17 @@
             </div>
             <!-- 右侧登录框 -->
             <div class="col-md-4 body-login">
-                <h3 class="iconfont">测试账号 (&#xe66b;:&nbsp;test&nbsp;&nbsp;&#xe620;:&nbsp;123)</h3>
+                <h3 class="iconfont">测试账号 (&#xe62a;:&nbsp;test&nbsp;&nbsp;&#xe744;:&nbsp;123)</h3>
                 <form class="form-horizontal" action="" method="post">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="id_usr" class="col-md-2 control-label iconfont">&#xe66b;</label>
+                        <label for="id_usr" class="col-md-2 control-label iconfont">&#xe62a;</label>
                         <div class="col-md-10">
                             {{ form.usr }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="id_pwd" class="col-md-2 control-label iconfont">&#xe620;</label>
+                        <label for="id_pwd" class="col-md-2 control-label iconfont">&#xe744;</label>
                         <div class="col-md-10" style="position: relative">
                             {{ form.pwd }}
                             <!-- 认证错误提示区域 -->

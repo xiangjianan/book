@@ -8,7 +8,7 @@
                 <form class="form-horizontal" action="" method="post">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="id_usr" class="col-md-2 control-label iconfont">&#xe66b;</label>
+                        <label for="id_usr" class="col-md-2 control-label iconfont">&#xe62a;</label>
                         <div class="col-md-10">
                             {{ form.usr }}
                             <!-- 错误信息提示区域 -->
@@ -16,13 +16,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="id_pwd" class="col-md-2 control-label iconfont">&#xe620;</label>
+                        <label for="id_pwd" class="col-md-2 control-label iconfont">&#xe744;</label>
                         <div class="col-md-10">
                             {{ form.pwd }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="id_r_pwd" class="col-md-2 control-label iconfont">&#xe620;</label>
+                        <label for="id_r_pwd" class="col-md-2 control-label iconfont">&#xe744;</label>
                         <div class="col-md-10">
                             {{ form.r_pwd }}
                             <span class="text-danger">{{ form.errors.0 }}</span>
