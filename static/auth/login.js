@@ -9,7 +9,6 @@ $(function () {
             },
             success: function (data) {
                 data = JSON.parse(data)
-                console.log(data)
                 // 认证成功，进入home
                 if (data.usr) {
                     location.href = '/app_home/home/';
