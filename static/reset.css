@@ -32,6 +32,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
     line-height: 1;
+    background-color: #E4EBF5;
 }
 
 ol, ul {
@@ -52,12 +53,16 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-
 .btn-info {
     color: #333!important;
-    background-color: #f2f3f5!important;
-    border-color: #f2f3f5!important;
+    background-color: #daE2ea!important;
+    border-color: #daE2ea!important;
 }
 .btn-info:hover {
-    background-color: #dddddd!important;
+    background-color: #edf3f8 !important;
+}
+.pagination>li>a, .pagination>li>span{
+    background-color: #daE2ea!important;
+}.pagination>li.active>a, .pagination>li.active>span{
+    background-color: #77a9d9 !important;
 }

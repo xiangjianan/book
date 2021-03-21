@@ -3,8 +3,8 @@ body{
 }
 .body-img{
     height: 600px;
-    background: url("/static/auth/login.png") no-repeat center top;
-    background-size: auto 600px;
+    background: url("/static/auth/books.svg") no-repeat center;
+    background-size: auto 450px;
 }
 .body-login{
     margin-top: 50px;

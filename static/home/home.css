@@ -43,6 +43,7 @@
 .pub-auth .bg, .book-head .bg {
     background-size: 100% auto;
     transition: 0.3s all cubic-bezier(.46, 1, .23, 1.52);
+    border-radius: 20px;
 }
 
 .pub-auth .bg a {
