@@ -11,6 +11,9 @@ body{
     padding-top: 50px;
     border-radius: 10px;
 }
+.body-login input{
+    background-color: #E8EfF9;
+}
 .body-login h3{
     width: 100%;
     margin: 20px auto;
