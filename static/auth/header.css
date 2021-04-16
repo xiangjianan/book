@@ -1,6 +1,6 @@
 .header{
     height: 70px;
-    background-color: #daE2ea;
+    background-color: rgba(0,0,0,0.03);
     border-bottom: 1px solid #E6E5E6;
 }
 .usr{
